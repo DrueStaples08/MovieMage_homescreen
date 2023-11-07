@@ -1,0 +1,107 @@
+/* Your existing CSS styles here */
+
+/* .tab-button {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+} */
+
+.tab-button {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for buttons */
+    margin-right: 1px; /* Add spacing between buttons */
+}
+
+
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-content {
+    display: none;
+}
+
+/* .search-bar {
+    display: flex;
+    margin-top: 20px;
+} */
+
+.search-bar {
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    padding: 10px; /* Adjust padding as needed */
+    margin-top: 20px;
+}
+
+
+
+.search-bar input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #555;
+}
+
+
+header {
+    /* background-image: url('your-image.jpg'); */
+    background-color: #333; /* You can choose a suitable background color */
+    color: #fff; /* Text color on the header */
+    padding: 20px; /* Adjust padding as needed */
+    font: 1em sans-serif;
+    text-align: justify;
+
+}
+
+
+h1 {
+    font-size: 36px; /* Increase the font size for the main title */
+    margin-top: 0; /* Remove top margin to prevent spacing */
+    
+}
+
+h2 {
+    font-size: 24px; /* Adjust the font size for subheadings */
+    margin-top: 20px; /* Add some spacing between headings */
+}
+
+
+li {
+    list-style: none; /* Remove default list styles */
+    margin-left: 20px; /* Add some margin to the left of list items */
+    padding: 5px; /* Add some padding for a better visual presentation */
+}
+
+
+.button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.button:hover {
+    background-color: #555;
+}

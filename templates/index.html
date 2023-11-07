@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <title>My Simple Homepage</title>
+</head>
+<body>
+    <header>
+        <h1>MovieMage</h1>
+        <p>A simple way to grade movies!</p>
+
+        <form action="/search" method="post">
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." name="search-query">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+
+
+        <h2>What is MovieMage?</h2>
+        <p>Allows users to grade movies in order to receive better recommendations to them. 
+           The goal with this app is to lean into the subjectiveness of reviews, 
+           but still introduce higher accuracy amongst the perception of individual components that make up a film. 
+        </p>
+
+
+        <h2>What can you do with MovieMage?</h2>
+        <li>Grade Movies</li>
+        <li>Receive Recommendations</li>
+
+
+        <h2>Why was MovieMage Created?</h2>
+        <li>Give users better recommendations</li>
+        <li>Give studios a better understanding of what works/doesn't work in a film.</li>
+        <li>Showcase and reward low budget to big blockbuster credited roles.</li>
+        <li>Replace higher profile award systems as the sample voting arguably doesnt represent the population</li>
+        <li>Promote a change to the normal "critic" term used; to a person who has X amount of followers on any social media account</li>
+        <li>Generate a grading system that helps people understand how to critique a movie.</li>
+
+
+        <h2>Grading Breakdown</h2>
+        <h3>You can give the following grades to movies</h3>
+        <ol>
+        <li>S (4.5-5.0): Classic, Love, Nostalgic, or Superb</li>
+        <ul>
+            <li>S (Classic): Refers to a project or person that molds either the history of the movie industry or your own projected universe</li>
+            <li>S (Love): Loving a movie is something like where you enjoy watching all the time and can't get enough of it.</li>
+            <li>S (Nostalgic): Nostalgia references the grades of projects/project contributors that give you a comfortable feeling from your past.</li>
+            <li>S (Superb): Basically, it means a movie may not be a Classic, Love, or Superb, but should still receive the highest respect. E.g. 
+                "This movie wasnt for me but I can't knock anything it did, I'm just not into these types of movies".</li>
+        </ul>
+        <li>A (4.0-4.49): Great</li>
+        <ul>        
+            <li>A: Great means the movie was exceptional!</li>
+        </ul>
+        <li>B (3.0.-3.99): Good</li>
+        <ul>
+            <li>Good means the movie was solid.</li>
+        </ul>
+        <li>C (2.5-2.99): Okay Decent</li>
+        <ul>
+            <li>Okay Decent means the movie was okay, but for now still wouldn't be considered a grade B for "good".</li>
+        </ul>
+        <li>C (2.0-2.49): Okay Meh</li>
+        <ul>
+            <li>Okay Meh means the movie just exists and it's not memorable, and you feel lack of engagment.</li>
+        </ul>
+        <li>D (1.0-1.99): Bad or Boring</li>
+        <ul>
+            <li>Bad means something was not up to par with your liking and can be viewed as a lower quality.</li>
+            <li>Boring means the movie or person isn't keeping your attention enough to keep you interested in the specified feature(s). You might find yourself disengaged with the project or contributor entirely to where your attention is directed somewhere else.</li>
+        </ul>
+        <li>F (0-.99): Horrible or Cringe</li>
+        <ul>
+            <li>Horrible features don't have any redeeming qualities</li>
+            <li>Cringe is the disgusted face that can't help but be made when seeing something or someone display the lowest quality.</li>
+        </ul>
+        </ol>
+
+
+        <h2>How are moviemagers categorized?</h2>
+        <p>Moviemagers are literally anyone who joins the app and grades at least one movie. 
+            Each grader will have the option to upload one of their social media accounts, one 
+            of which has the highest number of followers. This will determine what category users are in:</p>
+            <ul>
+            <li>0 - 10,000 followers</li>
+            <li>10,001 - 100,000 followers</li>
+            <li>100,001 - 1,000,000 followers</li>
+            <li>100,000,001+ followers</li>
+            </ul>
+
+
+        <h2>How should a project or project contributor be graded? Overall opionion? Personal opinion? </h2>
+        <p>
+            To first clarify the difference between a project, project contibutor, and moviemager, 
+            the project refers to the movie or tv show, the project contributor is a person with 
+            a credit for that project, and a moviemager is someone who joins the app to grade movies. 
+            You can think of moviemagers being synonomous with graders, critics, or users.
+        </p>
+        <p>   
+            Grade projects and project contibutors anyway you want to! Just remember to never tell someone how they should grade movies unless they ask.
+            If user A wanted to grade a movie based on a number of features, a single feature, or just their overall experience, they have the right to do so 
+            without being told otherwise. If you watch movie reviewers on Youtube, you will notice each person has their way of grading a movie. 
+            Therefore, let people have their own ideas and opinions because how boring would the world be if we all thought the exact same way.
+        </p>
+
+
+        <h2>What is next to come?</h2>
+        <ul>
+        <li>Add more movies, tv shows, specials, streaming originals, trailers, project contributors, etc</li>
+        <li>Add a MageList so users can create their own lists of any category and share it with their community.</li>
+        <li>Allow multiple people to access a single account. For example if two Youtubers have a channel together, then they both can grade a movie separately allowing each person to have a vote</li>
+        <li>Allow to share your MageList with other people and/or invite them to merge votes. For example, you can find the avg of each entry based on the values and number of friends voting.</li>
+        <li>Deploy on Android AppStore</li>
+        <li>Notifications to send user the first review of their original list that hasn't been updated to let users change their grades if they want to.</li>
+        </ul>
+
+
+    <div class="settings-icon" id="settings-icon">
+        <!-- <img src="templates/icons8-settings-30.png" alt="Settings" onclick="toggleSettings()"> -->
+        <!-- <img src="{{ url_for('static', filename='icons8-settings-30.png') }}" alt="Settings", onclick="toggleSettings()"> -->
+        <img src="{{ url_for('static', filename='icons8-settings-30.png') }}" alt="Settings" onclick="toggleSettings()">
+
+    </div>
+    <div class="settings-menu" id="settings-menu" style="display: none;">
+        <ul>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+        </ul>
+    </div>
+
+    </header>
+
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button" id="tab1">Tab 1</button>
+            <button class="tab-button" id="tab2">Tab 2</button>
+        </div>
+
+        <div id="content1" class="tab-content">
+            <h2>My Movies</h2>
+            <p>
+                This is a simple homepage created with HTML and CSS. You can modify it to add more content and style as per your needs.
+            </p>
+            <a href="#" class="button">Learn More</a>
+        </div>
+
+        <div id="content2" class="tab-content">
+            <h2>Recommendations</h2>
+            <p>
+                Content for Tab 2. You can replace this with your API content or link to other pages.
+            </p>
+            <a href="#" class="button">Visit API 2</a>
+        </div>
+
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
