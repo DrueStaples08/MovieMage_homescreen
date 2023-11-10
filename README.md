@@ -15,6 +15,9 @@ This is the home screen for a movie grading application called MovieMage
 - Settings (code is in this project): For the beta version this just allows the user to signout. Will add additionally funcitons to it like "About Us", "Contact US", "Notifications", etc.
 
 
+### Authenticate with GCP
+```gcloud auth application-default login```
+
 
 ### Run Flask App
 ```
@@ -22,7 +25,6 @@ FLASK_ENV=development
 FLASK_APP=app.py
 flask run
 ```
-
 
 
 ### Still Left to do
@@ -40,3 +42,4 @@ flask run
 - Create an api that shows the vote count vs grade for films from the last week, last month, last 3 months, last 6 months, all time 
 - Display what is trending (vote count vs grade for films from the last 24 hours)
 - Add more movies, tv shows, original streaming projects, documentaries, specials, trailers, etc. 
+- Display movie results dynamically as user types each letter in the search bar.
