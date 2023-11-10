@@ -1,0 +1,151 @@
+/*Add Asthetics to UI*/
+
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #f4f4f4; */
+    /* background-color: #646464; */
+    background-color: #79787819;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    padding: 20px;
+    margin-right: 40px;
+
+}
+
+.form-wrapper {
+    /* background-color: #fff; */
+    /* background-color: rgb(181, 13, 13); */
+    background-color: rgb(0, 0, 0);
+    border: 2px solid #333; /* Border style and color */
+    padding: 20px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgb(169, 0, 253); */
+    box-shadow: 0 0 10px rgb(129, 129, 129);
+    width: 400px;
+    /* width: 100%; */
+    text-align: center;
+    margin-left: 60px;
+    /* color: rgb(247, 223, 39); */
+    color: rgba(255, 0, 0, 0.905);
+    /* font: 1em American Typewriter; */
+    font: 1em sans-serif;
+    /* font-weight: 300px; */
+    font-size: 20px;
+    /* margin-top: 200px;  */
+    /* margin-bottom: 220px; */
+    /* height: 500px; */
+    /* margin-top: 15px; */
+    /* scroll-behavior: smooth; */
+}
+
+/* .form-wrapper h2 {
+    margin-top: 20px;
+} */
+
+
+/* .form-group {
+    margin-top: 120px;
+
+    /* margin-bottom: 15px;
+    /* padding: 5px; */
+/* }   */ 
+
+
+.form-group label {
+    display: block;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.form-group input {
+    width: 90%;
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+    border: 3px solid #000000;
+    border-radius: 3px;
+    /* margin-bottom: 20px; */
+    /* margin-right: 10px; */
+}
+
+.btn {
+    background-color: #0153aa;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 15px;
+    /* font: 1em American Typewriter; */
+    font: 1em sans-serif;
+
+}
+
+.btn:hover {
+    background-color: #000000;
+}
+
+.form-switch {
+    margin-top: 10px;
+    /* color: rgba(255, 0, 0, 0.905); */
+    color: rgb(255, 255, 255);
+
+}
+
+a {
+    color: rgba(0, 149, 255, 0.905);
+
+}
+
+a:hover {
+    color: rgba(208, 0, 255, 0.905);
+}
+
+/* Add this to your existing CSS */
+.phone-inputs {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    width: 98%;
+}
+
+.phone-inputs input {
+    flex: 1;
+    margin-left: 3px;
+}
+
+.phone-separator { 
+    margin: 0 3px;
+    /* margin-top: 5px; */
+    /* margin-left: 5px; */
+    /* font-weight: bold; */
+}
+
+
+
+.sweet-simple {
+    color:rgb(0, 221, 221);
+    /* font: 1em American Typewriter; */
+    font: 1em sans-serif;
+    /* text-align: left; */
+}
+
+.total-fail {
+    color: rgb(255, 255, 255);
+}
+
+
+.app-title {
+    color: red;
+    font-size: 25px;
+    /* font-family: ; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}

@@ -13,7 +13,7 @@
 
         <form action="/search" method="post">
             <div class="search-bar">
-                <input type="text" placeholder="Search..." name="search-query">
+                <input type="text" placeholder="Search..." name="search-query" oninput="performSearch()">
                 <button type="submit">Search</button>
             </div>
         </form>
@@ -124,12 +124,14 @@
         <img src="{{ url_for('static', filename='icons8-settings-30.png') }}" alt="Settings" onclick="toggleSettings()">
 
     </div>
+    <form action="{{ url_for('logout') }}" method="get">
     <div class="settings-menu" id="settings-menu" style="display: none;">
         <ul>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
         </ul>
     </div>
+    </form>
 
     </header>
 
