@@ -138,24 +138,27 @@
 
     <div class="container">
         <div class="tabs">
-            <button class="tab-button" id="tab1">Tab 1</button>
-            <button class="tab-button" id="tab2">Tab 2</button>
+            <button class="tab-button" id="tab1">My Movies</button>
+            <button class="tab-button" id="tab2">Recommendations</button>
         </div>
 
         <div id="content1" class="tab-content">
-            <h2>My Movies</h2>
+            <!-- <h2>My Movies</h2>
             <p>
                 This is a simple homepage created with HTML and CSS. You can modify it to add more content and style as per your needs.
-            </p>
-            <a href="#" class="button">Learn More</a>
+
+            </p> -->
+            <a href="{{ url_for('my_movies') }}"  class="button">View My Graded Movies</a>
+            <!-- <a href="#"  class="button">Learn More</a> -->
+
         </div>
 
         <div id="content2" class="tab-content">
-            <h2>Recommendations</h2>
+            <!-- <h2>Recommendations</h2>
             <p>
                 Content for Tab 2. You can replace this with your API content or link to other pages.
-            </p>
-            <a href="#" class="button">Visit API 2</a>
+            </p> -->
+            <a href="#" class="button">View My Movie Recommendations</a>
         </div>
 
     </div>

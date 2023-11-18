@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "movie-grader-394211",
+  "private_key_id": "4edbebb0a607352e4eeecf53633297c635f91fec",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC8AXMCZ/QbhQL8\nTHz5r9X/evMKGa0yVHaGsfaD3rqCCEXQbBUioNObp+I4/qdXYfAOW8beJ+wwJRhb\nEnjjNFizrSfRf/4+in3oXnvPRc3102d0paEzr7mtpmSSS6og1bMGBYspxidYWX+C\nei2QeHrgYEv/iisYxvz94HzUo7rolc4TdAtk+Q+dtv1yMHKnO0rlXCwGx6ReWh/e\ns+0yXBTo9y/PDX9cP8PX5/YHwFX9ctfsMYK0o/Kgy6ISbgjaUhrfEmpspQIYOaum\nK7xg+bu0e9lz1KaaasQk+7QlvA1ImeRcb0fD6WsoO6/ydXPhIaTbEcE/5UoITqNA\nJQwyczrhAgMBAAECggEABWv9Rxp8XbbOSTxjdkft4fpHvAjVh9gLuwKy20a3Fjzq\n1oHnciI1OA31ZjNh3BFE/QUEjS+VjiXjt+ymc9b0n+nkdhQ83szbqLHg3C9lKyu3\nlhOYvIba0fk0eUuZUm0XRpsuUjwWsmOSW87uNXZkBMiCKJJxf7ttXFz2/KLkJwTu\nOCms5I4ywBU5oRwgVx0pFEZqjJcbXdhWF4bzQ9mo9xrDNLVcqoDTQygSxsB6M0jn\nLzGUmq56Vgy59XuTOg6tDbAQXmK3PnKEr9V0uhujWYjzR/yyqnuPIOUj8GS4hQEn\n/6i2QvSZulmicvFYqzVRtmi5XPqLSjr7a14mMrCxCQKBgQD3HpVwKMFhmsYZcHtQ\n0/SfWvaaMdNfV41ffBb9TrIEv60+dUwJl3V//mv1KvtEIMvA80JdIU3zG24kAsmG\nlf2Tondwe8Fb1iMRvQUmQmMQpbWiR+GNv2lg2ua8zJ14vIAzQVJsQe4NSngunxni\nHGo4h6biZ9OsrK21riAhdRvmHwKBgQDCwwnOrMOO0elYLVr/QMl9Bblv1UWLmjWZ\nH49I6CTw539ElqGUILGlGtxz4gSaKBWNnP7i5hWoOEksffY5cdq+c3JVcbDFQQlx\nxRoMj8ZrgiMGAwvub22Hh0TNa/44NS9/sRhDTqpGcK10Poax7ipuQkqqDxLuyzPN\njo5SYWK+/wKBgBeRGRtLJ7YRNpcyfPAmZovT9vSZj9jl1pumj+K0YJHHXdQ5B3la\nsl/0eYM2CCRlJElQaaHMDU0D7qsMgP+OylIMCmv1wWjqsQl+B0GwzxXFV98UD9Se\nzoPoHF0g/luHToqUzjF40CUAVxnLHoLLxu2BMk8hK7Sp+x76biICsxhtAoGALc6d\noeR0YkTwsvKH8n0UZrlP8gOhRcJRVOBdXPJsrdRk1IbxHdvKrGBy9TZ1iqRe3V3N\nfSRMd7I1U6eUn9ItdpnEjGAfCWXQiNeo1seCDYsgHavdxIikpDmmbwI1Wpb3wvqu\nEDaSSdr6kNqb54FyrVgeI31EILHeTzx2MN4C0ZUCgYBsOqL1WdwwbMQvUOI2C6B9\n+Z/Ez6MxW5bYZGouZADs8csKU9sAP/KZcQj4W0gzrl//YHybfc9w/iRIZJ6y+PwT\n5qW9deGNGwkGOeSfZUypwlsmZH92+WUl8PIG5ldpuAV+oS9tqzxfALAAxLoSASoO\nHCIYpnN/hJld56a5EvRfhQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "google-cloud-bigquery@movie-grader-394211.iam.gserviceaccount.com",
+  "client_id": "118401173353665175271",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/google-cloud-bigquery%40movie-grader-394211.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

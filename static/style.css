@@ -24,6 +24,7 @@
 
 .tab-content {
     display: none;
+    padding-top: 20px;
 }
 
 /* .search-bar {
@@ -100,6 +101,7 @@ li {
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s; /* Smooth hover transition */
+    /* padding-bottom: 40px; */
 }
 
 .button:hover {
