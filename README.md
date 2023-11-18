@@ -37,9 +37,25 @@ flask run
 - Ensure everthing is connected properly
 
 ### Next Version
-- Allow users to grade anyone with a credit
 - Alow users to generate their own playlists of movies, like vampires, Christmas, Drew Barrymore
-- Create an api that shows the vote count vs grade for films from the last week, last month, last 3 months, last 6 months, all time 
-- Display what is trending (vote count vs grade for films from the last 24 hours)
+- Create an api that shows a line graph of the vote count vs grade for films from the last week, last month, last 3 months, last 6 months, all time 
+- Display what is trending (vote count vs grade for films from the last 24 hours) on homepage
 - Add more movies, tv shows, original streaming projects, documentaries, specials, trailers, etc. 
-- Display movie results dynamically as user types each letter in the search bar.
+- Display movie results dynamically as user types each letter in the search bar instead of resulting to a new html page of search results.
+- Allow users to grade all projects and project contributors with a credit
+
+
+### Need to do before completing MVP
+
+#### Python + Flask
+- Create a function that will select a users graded movies from table then ranks them in order based on grade
+- add the user's graded movies in the search results to show the movies graded/not graded and will also allow the user to change the grade which updates the database (Q. Once the app gets big enough, having that much database traffic can cause issues so consider updating table at the end of every day)
+
+#### Frontend
+- create an html page that shows the movie titles in one column with the number of votes and grades and a scroll option to grade the movie yourself in their own columns
+
+#### Grade a movie or update the grade
+- allow the user to 
+... choose what grade they want to give the movie (drop down selection) 
+... which then updates the movie database for its overall grade
+... and updates the 'My Movies' tab that displays a user's graded movies (i.e it also updates the user database in the 'graded_movies' column)

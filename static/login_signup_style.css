@@ -1,10 +1,8 @@
-/*Add Asthetics to UI*/
+/* Your existing CSS styles here */
 
 body {
     font-family: Arial, sans-serif;
-    /* background-color: #f4f4f4; */
-    /* background-color: #646464; */
-    background-color: #79787819;
+    background-color: #333; /* Match the header background color */
     margin: 0;
     padding: 0;
 }
@@ -13,50 +11,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
     padding: 20px;
-    margin-right: 40px;
-
 }
 
 .form-wrapper {
-    /* background-color: #fff; */
-    /* background-color: rgb(181, 13, 13); */
-    background-color: rgb(0, 0, 0);
-    border: 2px solid #333; /* Border style and color */
+    background-color: #000000; /* Match the button background color */
+    border: 2px solid #000000;
     padding: 20px;
     border-radius: 10px;
-    /* box-shadow: 0 0 10px rgb(169, 0, 253); */
-    box-shadow: 0 0 10px rgb(129, 129, 129);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 400px;
-    /* width: 100%; */
     text-align: center;
     margin-left: 60px;
-    /* color: rgb(247, 223, 39); */
-    color: rgba(255, 0, 0, 0.905);
-    /* font: 1em American Typewriter; */
+    color: #fff; /* Match the button text color */
     font: 1em sans-serif;
-    /* font-weight: 300px; */
     font-size: 20px;
-    /* margin-top: 200px;  */
-    /* margin-bottom: 220px; */
-    /* height: 500px; */
-    /* margin-top: 15px; */
-    /* scroll-behavior: smooth; */
 }
-
-/* .form-wrapper h2 {
-    margin-top: 20px;
-} */
-
-
-/* .form-group {
-    margin-top: 120px;
-
-    /* margin-bottom: 15px;
-    /* padding: 5px; */
-/* }   */ 
-
 
 .form-group label {
     display: block;
@@ -68,47 +38,38 @@ body {
 .form-group input {
     width: 90%;
     padding: 10px;
-    /* border: 1px solid #ccc; */
-    border: 3px solid #000000;
+    border: 3px solid #555; /* Match the button hover color */
     border-radius: 3px;
-    /* margin-bottom: 20px; */
-    /* margin-right: 10px; */
 }
 
 .btn {
-    background-color: #0153aa;
+    background-color: #555; /* Match the button hover color */
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 3px;
     cursor: pointer;
     margin-top: 15px;
-    /* font: 1em American Typewriter; */
     font: 1em sans-serif;
-
 }
 
 .btn:hover {
-    background-color: #000000;
+    background-color: #777; /* Darken the button hover color */
 }
 
 .form-switch {
     margin-top: 10px;
-    /* color: rgba(255, 0, 0, 0.905); */
-    color: rgb(255, 255, 255);
-
+    color: #fff; /* Match the button text color */
 }
 
 a {
-    color: rgba(0, 149, 255, 0.905);
-
+    color: #0095ff; /* Match the link color */
 }
 
 a:hover {
-    color: rgba(208, 0, 255, 0.905);
+    color: #d000ff; /* Match the link hover color */
 }
 
-/* Add this to your existing CSS */
 .phone-inputs {
     display: flex;
     align-items: center;
@@ -123,29 +84,19 @@ a:hover {
 
 .phone-separator { 
     margin: 0 3px;
-    /* margin-top: 5px; */
-    /* margin-left: 5px; */
-    /* font-weight: bold; */
 }
 
-
-
 .sweet-simple {
-    color:rgb(0, 221, 221);
-    /* font: 1em American Typewriter; */
+    color: #00dddd; /* Match the color */
     font: 1em sans-serif;
-    /* text-align: left; */
 }
 
 .total-fail {
-    color: rgb(255, 255, 255);
+    color: #fff; /* Match the button text color */
 }
 
-
 .app-title {
-    color: red;
+    color: #ff0000; /* Match the color */
     font-size: 25px;
-    /* font-family: ; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
