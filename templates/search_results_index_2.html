@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFrame Table</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>MovieMage Table</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {% for column in column_names %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    <th>Confirm Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for row in values %}
+                    <tr>
+                        {% for i in range(column_names|length) %}
+                            <td>
+                                {% set column_name = column_names[i] %}
+                                {% set value = row[i] %}
+                                {% if column_name == 'change_movie_grade' %}
+                                    <form action="{{ url_for('update_grade') }}" method="post">
+                                        <input type="hidden" name="other_value" value="{{ value }}"> <!-- Add more hidden fields as needed -->
+                                        <input type="hidden" name="movie_id" value="{{ row.movie_id }}">
+                                        <input type="hidden" name="row_data" value='{{ row|tojson|safe }}'>
+                                        <input type="hidden" name="search-query" value="{{ query }}">
+
+                                        <select name="grade" class="update_grade">
+                                            <option value="S: Classic">S: Classic</option>
+                                            <option value="S: Superb">S: Superb</option>
+
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                        <!-- Additional hidden fields if needed -->
+                                        <!-- <input type="hidden" name="movie_id" value="{{ row.movie_id }}"> -->
+                                        <td>
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </td>
+                                    </form>
+                                {% else %}
+                                    {{ value }}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                        <!-- <td> -->
+                            <!-- <button type="submit" class="btn btn-primary">Confirm</button> -->
+                            <!-- <p>The serial number is:<%=request.getParameter("search-query") %></p> -->
+
+                            <!-- <a href="{{ url_for('update_grade') }}" class="button">Confirm_grade</a> -->
+                        <!-- </td> -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('homepage') }}" class="btn btn-primary">Go Back to Homepage</a>
+
+    </div>
+</body>
+</html>

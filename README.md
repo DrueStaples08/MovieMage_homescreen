@@ -21,9 +21,12 @@ This is the home screen for a movie grading application called MovieMage
 
 ### Run Flask App
 ```
-FLASK_ENV=development
-FLASK_APP=app.py
-flask run
+$ FLASK_ENV=development
+$ FLASK_APP=app.py
+
+$ flask run 
+or 
+$ python app.py
 ```
 
 
@@ -56,6 +59,19 @@ flask run
 
 #### Grade a movie or update the grade
 - allow the user to 
+
 ... choose what grade they want to give the movie (drop down selection) 
+
 ... which then updates the movie database for its overall grade
+
 ... and updates the 'My Movies' tab that displays a user's graded movies (i.e it also updates the user database in the 'graded_movies' column)
+
+
+### Add user grades to search results
+- When a user wants to search for a movie, this involves a direct query matching. 
+
+So movies that have been graded or not graded should appear in the search results as an additional column
+
+The displayed table visually is same as the 'My Movies'.
+
+I will need to gather all movie_ids from the search results and then join with the user table in the graded_movies column (json where the keys are movie ids and the values are the user's grades)
