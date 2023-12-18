@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for
 from flask_restx import Api, Resource, fields, apidoc
 from flasgger import Swagger
-from lib.gcp import search_all_movies, extract_user_movie_grades, view_my_movies, user_update_grade_json
-from lib.gcp import user_login, user_signup, client, search_my_movies, user_update_grade, update_user_table_with_new_grade
+from lib.gcp import search_all_movies, extract_user_movie_grades, view_my_movies, user_update_grade_json, update_movie_votes, update_movie_votes_query
+from lib.gcp import user_login, user_signup, client, search_my_movies, user_update_grade, update_user_table_with_new_grade, extract_graded_movies
 
 load_dotenv()
 
@@ -105,13 +105,19 @@ def signup_post():
 def search():
     email = session.get('email', 'No email found')
     password = session.get('password', 'No password found')
-    # query = request.form.to_dict()['search-query']
-    query = session.get('search-query')
+    movie_id = session.get('movie_id')
+
+    try:
+        query = request.form.to_dict()['search-query']
+    except Exception as e:
+        # print(e)
+        query = session.get('search-query')
 
     session['search-query'] = query
 
     search_result = search_all_movies(query)
-    search_result = search_my_movies(search_result, email, password)
+    df = extract_graded_movies(email, password)
+    search_result = search_my_movies(search_result, movie_id, df)
 
 
     return render_template("search_results_index_2.html", column_names=search_result['column_names'], values=search_result['values'])
@@ -152,7 +158,7 @@ def search():
 #     # return jsonify(new_grade_confirmation)
 
 
-@app.route('/update_grade', methods=['GET', 'POST'])
+@app.route('/update_grade', methods=['POST'])
 def update_grade():
     email = session.get('email', 'No email found')
     password = session.get('password', 'No password found')
@@ -161,43 +167,39 @@ def update_grade():
     query = session.get('search-query')
     movie_id = session.get('movie_id')
     movie_title = row_data[0]
-    # print('!!!!!!!!!!!!!!!!!!!!!!Xxxxxsssssssssssssssss', row_data, query, movie_id, user_updated_grade)
-    # return jsonify(
-    #     {'new_grade': 
-    #      {'updated_user_grade': user_updated_grade, 
-    #      'row_data': row_data,
-    #     'search_query': query
-    #     }
-    #     }
-                    # )
-    # return redirect(url_for('homepage'))
-    # update the movie_database here 
 
-    search_result = search_all_movies(query)
-    search_result = search_my_movies(search_result, email, password)
-    # user_new_grade_dict = user_update_grade(search_result, 'The Kid', 'good') 
+    # update the movie_database here 
+    # Searches for all matches based on query
+    search_all = search_all_movies(query)
+    # Extracts my graded movies
+    # save the original score and pass it to update_movie_votes function
+    df = extract_graded_movies(email, password)
+    search_result = search_my_movies(search_all, movie_id, df)
+
+    # search_result = search_my_movies(search_all, email, password, movie_id)
     user_new_grade_dict = user_update_grade(search_result, movie_title, user_updated_grade) 
 
     user_new_grade_json = user_update_grade_json(user_new_grade_dict, email, password)
+    # user_new_grade_json holds the movie_ids as keys and grades as values
     movie_id = user_new_grade_dict.popitem()[0]
     session['movie_id'] = movie_id
-    update_user_table_with_new_grade(user_new_grade_json, email, password)
-    return redirect(url_for('search', query=query))   
-    # return redirect(url_for("search"))
-        # try:
-        #     movie_id = request.form.get('movie_id')
-        #     new_grade = request.form.get('grade')
-        #     # movie_title = request.form.get('title')
-        #     # new_grade = request.form.get('grade')
-        #     # return jsonify({movie_title: new_grade})
-        #     print(f"Movie ID: {movie_id}, New Grade: {new_grade}")
+    # UPDATE THE USER TABLE WITH THEIR NEW GRADE
+    update_result = update_user_table_with_new_grade(user_new_grade_json, email, password)
+    # create a function in gcp that updates the movie_votes based on the movie_id
+    # UPDATE THE MOVIE VOTES TABLE ONLY IF THE USER HASN'T GRADED THE MOVIE BEFORE
+    vote_update = update_movie_votes(movie_id, search_result, df)
 
-        #     print('update_grade here^^^^^^^^^^^^^^^^^^^')
-        #     return jsonify({'message': f"Movie ID: {movie_id}, New Grade: {new_grade}"})
-        # except Exception as e:
-        #     # Handle exceptions appropriately (e.g., log the error)
-        #     print(f"Error updating grade: {e}")
-        #     return jsonify({'error': 'Failed to update grade'}), 500
+    if vote_update:
+        update_movie_votes_query(movie_id)
+    # else:
+    #     update_movie_votes_query(movie_id)
+
+    if update_result:
+        print('update_result completed')
+        return redirect(url_for('search', query=query)) 
+    else:
+        return redirect(url_for('homepage'))  
+
 
 # My Movies: return the graded movies and other quantitative data to be displayed in the front end
 # Todo: Update the movie votes, movie grade, and movie letter grade when a user grades a movie

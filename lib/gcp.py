@@ -42,7 +42,7 @@ def user_update_grade(search_my_movies_dict: dict, movie_title: str, new_grade: 
     # print(movie_info, movie_id)
     # return movie_info, movie_id
     grade_movie[movie_id] = new_grade
-    print(grade_movie)
+    # print('user_update_grade - grade_movie', grade_movie)
     return grade_movie
     #     print(search_my_movies_dict, movie_title, new_grade)
 
@@ -82,43 +82,212 @@ def user_update_grade_json(user_update_grade_dict: dict, email: str, password: s
 
     # new_user_all_grades_dict[movie_id] = movie_grade
     # print(new_user_all_grades_dict, new_user_grade_dict, type(movie))
-    print(new_user_all_grades_dict)
+    # print(new_user_all_grades_dict, "$#$#$#$#$#$#$#$#$#$#$#$#$#$#$")    
+    # Find the count of the column via movie_id in graded_movies
     return new_user_all_grades_dict
 
 def update_user_table_with_new_grade(new_user_all_grades_dict: dict, email: str, password: str):
     c = client()
-    # print('Dddddddddddddddddd', new_user_all_grades_dict)
-    movie_id_grade = new_user_all_grades_dict.popitem()
-    movie_id = movie_id_grade[0]
-    movie_grade = movie_id_grade[1]
+    # # json_grades = json.dumps(new_user_all_grades_dict)
+    # # Fix this query so that it doesn't keep overwriting and instead merges witht json object e.g. {**updated_movie_grade, **all_user_movie_grades}
+    # QUERY = f"""UPDATE {USER_TABLE_NAME} SET graded_movies = JSON_OBJECT('{movie_id}', '{movie_grade}') WHERE email = '{email}' and password = '{password}' """
+    update_clause = ', '.join([f"'$.{key}', '{value}'" for key, value in new_user_all_grades_dict.items()])
+    # print(update_clause, '^&^&^&^&^&^&^&^&^&^&^&^&^&&', type(update_clause))
+    # QUERY = f"""UPDATE `movie-grader-394211.movie_grader_dataset.user_info_2`
+    QUERY = f"""UPDATE {USER_TABLE_NAME}
+    SET graded_movies = JSON_SET(
+    graded_movies,
+    {update_clause}
+    )
+    WHERE email = '{email}' AND password = '{password}'"""
 
-    # json_grades = json.dumps(new_user_all_grades_dict)
-    QUERY = f"""UPDATE {USER_TABLE_NAME} SET graded_movies = JSON_OBJECT('{movie_id}', '{movie_grade}') WHERE email = '{email}' and password = '{password}' """
     result = c.query(QUERY)
-    # print(result, email, password)
     return True if result else False
 
 
+# def update_movie_votes_query(movie_id: str, new_movie_votes: int):
+def update_movie_votes_query(movie_id: str):
+    # print(movie_id, new_movie_votes, 'MADSFMADMFA')
+    c = client()
+    # if my the movie id has a my_movie_grade not 'NYG' then update table
+
+    QUERY = f"""UPDATE {MOVIE_TABLE_NAME} SET movie_votes = movie_votes + 1 WHERE movieId = '{movie_id}'"""
+    # QUERY = f"""UPDATE {MOVIE_TABLE_NAME} SET movie_votes = {new_movie_votes} WHERE movieId = '{movie_id}'"""
+
+    try:
+        result = c.query(QUERY).result()
+        print('MOVIE_VOTES UPDATED IN BQ', result, 1)
+        return True
+    except Exception as e:
+        print(f'Error updating movie votes {e}')
+        return False
+    # return True if result else False
+
+def update_movie_votes(movie_id: str, search_my_movies_dict: dict, df: pd.DataFrame):
+    c = client()
+    QUERY = f"""SELECT movie_votes FROM {MOVIE_TABLE_NAME} WHERE movieId = '{movie_id}'"""
+    result = c.query(QUERY)
+    x = result.result().to_dataframe()
+    movie_index = search_my_movies_dict['movie_ids'].index(movie_id)
+    my_movie_grade = search_my_movies_dict['values'][movie_index][-2]
+    movie_votes = search_my_movies_dict['values'][movie_index][2]
+    # original_grade = search_my_movies_dict['original_grade']
+    # new_votes_count = search_my_movies_dict['new_votes_count']
+    print('my_movie_grade', my_movie_grade) 
+    print('movie_index', movie_index)
+    print('movie_votes', movie_votes)
+    # print('original_grade', original_grade)
+    print('df values', df['graded_movies'].values[0])
+    print('movie_id', movie_id)
+    my_graded_movies = df['graded_movies'].values[0]
+
+    if movie_id in my_graded_movies:
+        return False
+    else:
+        return True
+
+    # print('search_my_movies_dict', search_my_movies_dict)
+    # print('movie_index', movie_index)
+    # print('df', x)
+    # movie_id, original_grade
+    '''
+    if original_grade is 'NYG':
+        q = update table set movie_votes += 1 where movie_id = {movie_id} 
+        q.result()
+
+    '''
+    # print('movie_id', movie_id, 'movie_votes', movie_votes)
+
+    # if my the movie id has a my_movie_grade not 'NYG' then update table
+    # QUERY = f"""UPDATE {MOVIE_TABLE_NAME} SET movie_votes = 0 WHERE movieId = '{movie_id}'"""
+
+    # try:
+    #     result = c.query(QUERY).result()
+    #     print('MOVIE_VOTES UPDATED IN BQ', result, 1)
+    #     return True
+    # except Exception as e:
+    #     print(f'Error updating movie votes {e}')
+    #     return False
+    # print('new votes count', new_votes_count)
+    # update_movie_votes_query(movie_id, new_votes_count)
+    # print('original_grade', search_my_movies_dict['original_grade'])
+    # original_grade = search_my_movies_dict['original_grade']
+    # print(search_all_movies_dict, 'XOXOXOXOXOXOXOXOXOX', my_movie_grade, movie_index, search_all_movies_dict['values'][movie_index], search_all_movies_dict['values'][movie_index][-2])
+    
+    # if original_grade == 'NYG':
+    # # if my_movie_grade == 'NYG':
+
+    #     # create a function that simply incremets the movie_votes column by one
+    #     # search_all_movies_dict['values'][2] += 1
+    #     return update_movie_votes_query(movie_id)
+    #     # print('Grade is NYG')
+    # else:
+    #     print('update_movie_votes_query', my_movie_grade)
+        # increment the movie_votes by one only one time
+        # User is either grading a movie for the first time or changing the grade
+
+        # if the movie id is not in the dictionary of graded movies then increment the movie votes column by one
+        # print('MOVIE VOTES COLUMN!!!!!!!!!!!!!!!!!!!!!')
+        # print(x)
+        # return False
+    # update_movie_votes_query(movie_id, movie_votes)
+    # return {'results': str(search_my_movies_dict)}
+    # return True
+    # return x
 # search_my_movies: User Table
 # view_my_movies: Movie Table
 
-# Search for the movie ids that a user has graded, this will update the dictionary with the users grade of that movie while the movies 
-# ...the user hasn't graded display as NYG for Not Yet Graded
-
-# Possibly remove
-def search_my_movies(search_all_movies_dict: list, email: str, password: str)->dict:
+def extract_graded_movies(email, password):
     c = client()
     QUERY = f"""SELECT graded_movies FROM {USER_TABLE_NAME} where email = '{email}' and password = '{password}' """
     result = c.query(QUERY)
     df = result.to_dataframe()
+    return df
+# Search for the movie ids that a user has graded, this will update the dictionary with the users grade of that movie while the movies 
+# ...the user hasn't graded display as NYG for Not Yet Graded
+
+def search_my_movies(search_all_movies_dict: list, movie_idx: str, df: pd.DataFrame)->dict:
+    # c = client()
+    # QUERY = f"""SELECT graded_movies FROM {USER_TABLE_NAME} where email = '{email}' and password = '{password}' """
+    # result = c.query(QUERY)
+    # df = result.to_dataframe()
+    # df = extract_graded_movies()
+    # print('SEARCH_ALL_MOVIES_DICT', search_all_movies_dict)
     my_graded_movies = json.loads(df['graded_movies'].values[0])
     my_grade_movies_ids = list(my_graded_movies.keys())
     search_movie_ids = search_all_movies_dict['movie_ids']
+    # print(df['graded_movies'].values[0])
+    # print('my_grade_movies_ids', my_grade_movies_ids)
+    # print(my_graded_movies, 'VVVVVVVVVVVVVVVVVVV')
+    # vote_count = 100
+    # search_all_movies_dict['new_votes_count'] = 100
+    # search_all_movies_dict['original_grade'] = 'NYG'
     for movie_id in my_grade_movies_ids:
+        # print('RRRRRRRRRRR', movie_id)
+        # if (movie_idx == movie_id) and (movie_id in search_movie_ids):
+        #     # print('YES')
+        #     # smi2 = my_grade_movies_ids.index(movie_idx)
+        #     smi3 = my_graded_movies[movie_idx]
+        #     search_all_movies_dict['original_grade'] = smi3
+
+            # print(smi3, '***********************')
+            # smi = search_all_movies_dict['movie_ids'].index(movie_idx)
+            # print('search_matching_index', search_matching_index)
+            # print(search_all_movies_dict['values'][search_matching_index])
+            # search_all_movies_dict['original_grade'] = search_all_movies_dict['values'][smi][-2]
+            # print(search_all_movies_dict['original_grade'])
         if movie_id in search_movie_ids:
             my_movie_grade =  my_graded_movies[movie_id]
             search_matching_index = search_all_movies_dict['movie_ids'].index(movie_id)
-            search_all_movies_dict['values'][search_matching_index][-2] = my_movie_grade
+            # print('search_matching_index', search_matching_index)
+            # Invoke update movie votes function here
+            # original_grade = search_all_movies_dict['values'][search_matching_index][-2]
+            # # extract the original grade based on the correct movie_id
+            # search_all_movies_dict['original_grade'] = original_grade
+            # print('original grade', original_grade)
+            if search_all_movies_dict['values'][search_matching_index][-2] == 'NYG':
+                # print('HASNT BEEN GRADED YET')
+                # search_all_movies_dict['original_grade'] = 'NYG'
+                search_all_movies_dict['values'][search_matching_index][-2] = my_movie_grade
+
+
+
+                # search_all_movies_dict['values'][search_matching_index][2] += 1 
+            
+            
+            
+            # else:
+            #     # print('ALREADY GRADED')
+            #     search_all_movies_dict['original_grade'] = search_all_movies_dict['values'][search_matching_index][-2]
+            #     search_all_movies_dict['values'][search_matching_index][-2] = my_movie_grade
+            # if movie_id == movie_idx:
+            #     original_grade = search_all_movies_dict['values'][search_matching_index][2]
+            # print(search_all_movies_dict['values'][search_matching_index])
+
+    # search_matching_index = search_all_movies_dict['movie_ids'].index(movie_idx)
+    # print('search_matching_index', search_matching_index)
+    # print(search_all_movies_dict['values'][search_matching_index])
+    # search_all_movies_dict['original_grade'] = search_all_movies_dict['values'][search_matching_index][-2]
+
+
+    # search_all_movies_dict['original_grade'] = original_grade
+    # # if movie_idx in search_movie_ids:
+    # search_all_movies_dict['new_votes_count'] = vote_count
+
+        # else:
+        #     search_all_movies_dict['original_grade'] = 'NYG'
+
+    # search_movie_ids.index(movie_id)
+    # if movie_idx in my_grade_movies_ids:
+    #     print('True: if movie_idx in my_grade_movies_ids', movie_idx, my_grade_movies_ids)
+
+    #     search_all_movies_dict['original_grade'] = 'X'
+    # else:
+    #     print('False: if movie_idx in my_grade_movies_ids', movie_idx, my_grade_movies_ids)
+
+    #     movie_index = search_all_movies_dict['movie_ids'].index(movie_idx)
+    #     search_all_movies_dict['original_grade'] = 'NYG'
+    # print('search_all_movies_dict', search_all_movies_dict)
     return search_all_movies_dict
 
 
