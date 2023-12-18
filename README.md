@@ -75,3 +75,13 @@ So movies that have been graded or not graded should appear in the search result
 The displayed table visually is same as the 'My Movies'.
 
 I will need to gather all movie_ids from the search results and then join with the user table in the graded_movies column (json where the keys are movie ids and the values are the user's grades)
+
+
+
+### Update num of votes for each movie
+
+- each movie starts off with one vote
+- when a user grades a movie or changes the grade, the function will substract 1 and then add 1 
+
+
+
